@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alphard Kent - Resume</title>
+  <meta name="description" content="Resume - Alphard Kent B. Alonsagay (IT student)" />
+
+  <link rel="icon" href="me.jpg" />
+
+  <style>
+    :root{
+      --bg:#071a38;
+      --bg2:#0a2348;
+      --card:#0d254f;
+      --muted:#a7b4cc;
+      --accent:#4da6ff;
+      --accent2:#79baff;
+      --white:#f2f6ff;
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
+      --radius:12px;
+      --shadow: 0 8px 28px rgba(4,22,60,0.6);
+      --gap:20px;
+      --label-size:13px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--bg),var(--bg2));
+      color:var(--white);
+      padding:28px;
+      display:flex;
+      justify-content:center;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:rgba(255,255,255,0.02);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:var(--gap);
+    }
+
+    header{
+      grid-column:1/-1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 24px;
+      background:rgba(255,255,255,0.02);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      background:var(--glass);
+      display:grid;place-items:center;color:var(--accent);font-weight:800;font-size:16px;
+    }
+    .header-info{color:var(--muted);font-size:13px}
+
+    .sidebar{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border-right:1px solid rgba(255,255,255,0.02);
+      min-height:640px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      align-items:center;
+    }
+
+    .avatar{
+      width:160px;
+      height:160px;
+      border-radius:16px;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:
+        0 0 18px rgba(77,166,255,0.6),
+        0 0 34px rgba(77,166,255,0.35),
+        0 14px 36px rgba(0,0,0,0.35);
+      border:2px solid rgba(77,166,255,0.28);
+      flex-shrink:0;
+    }
+
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      object-position: center  -30px;
+    }
+
+    .avatar .yn{
+      position:relative;
+      z-index:2;
+      color:white;
+      font-weight:800;
+      font-size:32px;
+      pointer-events:none;
+      display:none;
+    }
+
+    .avatar.no-img { background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+    .avatar.no-img img { display:none; }
+    .avatar.no-img .yn { display:block; }
+
+    .name{text-align:center;margin-top:8px}
+    .name h1{font-size:20px;margin-bottom:4px}
+    .name .role{color:var(--muted);font-size:13px}
+
+    .contact,.skills,.education{ width:100%; text-align:left; color:var(--muted); font-size:14px; }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:16px;
+      color:var(--white);
+      margin-bottom:8px;
+    }
+
+    .section-icon {
+      width:18px;
+      height:18px;
+      fill: var(--accent);
+      opacity:0.95;
+      flex-shrink:0;
+    }
+
+    h2.section-h2{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:20px;
+      color:var(--white);
+      margin-bottom:8px;
+    }
+
+    .skill-list{display:flex;flex-wrap:wrap;gap:8px}
+    .skill-pill{
+      background:rgba(255,255,255,0.03);
+      padding:6px 10px;
+      border-radius:8px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .main{padding:22px;display:flex;flex-direction:column;gap:20px}
+    .muted{color:var(--muted)}
+    ul.clean{list-style:none;padding-left:0;margin-top:8px}
+    ul.clean li{margin-bottom:8px;color:var(--muted)}
+
+    .card{
+      background:var(--card);
+      padding:14px;border-radius:12px;
+      box-shadow:0 6px 18px rgba(5,15,45,0.35);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .row{display:flex;gap:14px;align-items:flex-start}
+    .col{flex:1}
+
+    .meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+
+    .progress{
+      height:8px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden;
+    }
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:8px}
+
+    footer{
+      grid-column:1/-1;
+      padding:12px 24px;
+      color:var(--muted);
+      font-size:13px;
+      border-top:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .grid.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+    @media(max-width:980px){
+      .container{grid-template-columns:1fr;padding:14px}
+      .sidebar{flex-direction:row;gap:12px;padding:12px;border-right:0;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center}
+      .avatar{width:88px;height:88px;border-radius:10px}
+      .main{padding:16px}
+      .grid.projects{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:560px){
+      .grid.projects{grid-template-columns:1fr}
+      .row{flex-direction:column}
+    }
+
+    a.link{color:var(--accent);text-decoration:none;font-weight:600}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* ---------- Slime card styles (namespaced) ---------- */
+    .slime-card {
+      background: linear-gradient(180deg,#0d254f,#0a2348);
+      padding: 0;
+      border-radius: 12px;
+    }
+
+    .slime-card .card-inner {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      overflow: hidden;
+    }
+
+    .slime-canvas {
+      background: #e9faff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      position: relative;
+    }
+
+    .slime-label {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #024a3a;
+    }
+
+    .slime {
+      width: 250px;
+      height: 200px;
+      position: relative;
+    }
+    .slime .body {
+      background: linear-gradient(180deg, #7ef3a6, #44d17a);
+      width: 100%;
+      height: 85%;
+      border-radius: 55% 55% 45% 45%;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      position: absolute;
+      bottom: 0;
+      box-shadow: inset 0 -10px 20px rgba(0,0,0,0.08);
+    }
+    .slime .gloss {
+      width: 120px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      position: absolute;
+      top: 25px;
+      left: 65px;
+      filter: blur(2px);
+      opacity: 0.9;
+    }
+    .slime .eye {
+      width: 35px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 70px;
+      box-shadow: inset 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .slime .eye.left { left: 60px; }
+    .slime .eye.right { right: 60px; }
+    .slime .eye .pupil {
+      width: 14px;
+      height: 20px;
+      background: #042827;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 11px;
+    }
+    .slime .mouth {
+      width: 50px;
+      height: 20px;
+      border-radius: 0 0 25px 25px;
+      border-bottom: 4px solid rgba(0,0,0,0.5);
+      position: absolute;
+      top: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .slime .blush {
+      width: 25px;
+      height: 12px;
+      background: rgba(255,120,150,0.25);
+      border-radius: 50%;
+      position: absolute;
+      top: 110px;
+    }
+    .slime .blush.left { left: 40px; }
+    .slime .blush.right { right: 40px; }
+
+    .slime-info {
+      padding: 30px;
+      color: #04393a;
+      background: #f7fffd;
+    }
+    .slime-info .title { font-size: 22px; font-weight: 800; color: #04393a; margin-bottom:6px; }
+    .slime-info .subtitle { font-size: 14px; font-weight:700; color:#036b5a; margin-bottom:10px; }
+    .slime-info .desc { color: #05514a; line-height:1.4; margin-bottom:12px }
+    .slime-stats { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
+    .slime-stat { background:#f3fefe; border-radius:10px; padding:12px; width:120px; text-align:center; border:1px solid rgba(0,0,0,0.08) }
+    .slime-stat h4 { margin:0 0 6px; color:#033f3b }
+    .hpbar { width:100%; height:10px; background:rgba(0,0,0,0.1); border-radius:6px; overflow:hidden; margin-top:6px }
+    .hpbar i { display:block; height:100%; background:linear-gradient(90deg,#66ff94,#1ee35b); width:50% }
+    /* ---------- end slime styles ---------- */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AK</div>
+        <div>
+          <div style="font-weight:800">Alphard Kent B. Alonsagay</div>
+          <div class="header-info">Information Technology - Student</div>
+        </div>
+      </div>
+
+      <div class="header-info small">San Sebastian College - Recoletos de Cavite - Available for internships & freelance</div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar with contact and skills">
+      <!-- AVATAR: uses your uploaded file path -->
+      <div id="avatar" class="avatar avatar-with-img" aria-hidden="false">
+        <img id="avatarImg" src="me.jpg" alt="Alphard Kent photo">
+        <div class="yn">AK</div>
+      </div>
+
+      <div class="name">
+        <h1>Alphard Kent</h1>
+        <div class="role small">IT Student - Frontend / Python - Aspiring Full-Stack Developer</div>
+      </div>
+
+      <div class="contact">
+        <div class="section-title"><strong>Contact</strong></div>
+        <p class="muted"><strong>Email:</strong> <a class="link" href="mailto:alphardkent@gmail.com">alphardkent@gmail.com</a></p>
+        <p class="muted"><strong>Phone:</strong> <a class="link" href="tel:09691813760">0969 181 3760</a></p>
+        <p class="muted"><strong>Location:</strong> Cavite, Philippines</p>
+        <p class="muted"><strong>Portfolio:</strong> <a class="link" href="#" target="_blank">github.com/corhydrae4</a></p>
+      </div>
+
+      <div class="skills">
+        <div class="section-title"><strong>Core Skills</strong></div>
+        <div class="skill-list">
+          <div class="skill-pill">Python</div>
+          <div class="skill-pill">JavaScript</div>
+          <div class="skill-pill">C++</div>
+          <div class="skill-pill">HTML & CSS</div>
+          <div class="skill-pill">MySQL</div>
+          <div class="skill-pill">Git</div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="small" style="margin-bottom:6px"><strong>Tools & Tech</strong></div>
+          <div class="small muted">VSCode • GitHub • Chrome DevTools • MySQL Workbench • Python (IDLE/VSCode)</div>
+        </div>
+      </div>
+
+      <div class="education">
+        <div class="section-title"><strong>Education</strong></div>
+        <p class="muted"><strong>San Sebastian College - Recoletos de Cavite</strong><br>BS Information Technology (Ongoing) - Expected grad: 2027</p>
+        <div class="small muted" style="margin-top:6px">Relevant coursework: Data Structures, Web Development, Database Systems, Algorithms</div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" aria-label="Main resume content">
+
+      <!-- ABOUT -->
+      <section id="about" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5 0-9 3-9 6v2h18v-2c0-3-4-6-9-6z"/></svg>
+          About
+        </h2>
+        <p class="muted">I'm an IT student who enjoys building clean and practical projects - from Python automation scripts to small web apps. I like solving problems, learning new tools, and improving code quality. Currently focusing on web fundamentals and backend basics (MySQL) while exploring project organization and version control.</p>
+
+        <div style="margin-top:12px" class="row">
+          <div class="col">
+            <div class="small" style="margin-bottom:6px"><strong>Availability</strong></div>
+            <div class="muted small">Open to internship, freelance, and part-time projects. Prefer remote or local (Cavite) opportunities.</div>
+          </div>
+          <div class="col">
+            <div class="small" style="margin-bottom:6px"><strong>Interests</strong></div>
+            <div class="muted small">Web dev, scripting & automation, small tools, databases, beginner cybersecurity.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERSONAL DETAILS (NEW SECTION) -->
+      <section id="personal-details" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 12c-5 0-9 3-9 6v2h18v-2c0-3-4-6-9-6z"/></svg>
+          Personal Details
+        </h2>
+
+        <div style="display:flex;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:240px">
+            <div class="small" style="margin-bottom:6px"><strong>Social Profiles</strong></div>
+            <p class="muted" style="margin-bottom:6px">
+              Facebook: <a class="link" href="https://www.facebook.com/kent.alonsagay" target="_blank" rel="noopener noreferrer">kent.alonsagay</a>
+            </p>
+            <p class="muted" style="margin-bottom:6px">
+              Instagram: <a class="link" href="https://www.instagram.com/legovader4/" target="_blank" rel="noopener noreferrer">@legovader4</a>
+            </p>
+            <p class="muted" style="margin-bottom:6px">
+              TikTok: <a class="link" href="https://www.tiktok.com/@drahplatnek" target="_blank" rel="noopener noreferrer">@drahplaknet</a>
+            </p>
+          </div>
+
+          <div style="flex:1;min-width:240px">
+            <div class="small" style="margin-bottom:6px"><strong>Hobbies & Likes</strong></div>
+            <ul class="clean">
+              <li class="muted">Playing computer games</li>
+              <li class="muted">Driving cars - casual road trips</li>
+              <li class="muted">Baking and pastries - cookies are a favorite</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE (updated) -->
+      <section id="experience" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M4 7h16v2H4V7zm0 4h16v8H4v-8zM6 2h12v2H6V2z"/></svg>
+          Experience
+        </h2>
+
+        <p class="muted"><strong>No formal corporate work experience yet.</strong> Below are hands-on projects and relevant roles showing applied technical skills.</p>
+
+        <div style="margin-top:12px">
+
+          <!-- Ashen Cipher -->
+          <div style="margin-bottom:10px">
+            <strong>Ashen Cipher Encryption and Decryption Tool (Python)</strong>
+            <div class="meta small">Personal project - Python</div>
+            <div class="muted">
+              Built a custom encryption and decryption system using Atbash Cipher, binary translation,
+              and permutation logic. Added a simple GUI that allows users to input data, encrypt,
+              decrypt, and export results. Focused on string manipulation, base conversion,
+              and clean program structure.
+            </div>
+          </div>
+
+          <!-- Toy Aircraft Inventory -->
+          <div style="margin-bottom:10px">
+            <strong>Toy Military Aircraft Inventory System</strong>
+            <div class="meta small">Practice project - HTML, CSS, JavaScript</div>
+            <div class="muted">
+              Developed a small front-end inventory system for toy military aircraft.
+              Supports adding items, editing data, deleting records, searching,
+              filtering by condition, and CSV exporting. Uses localStorage to persist data.
+            </div>
+          </div>
+
+          <!-- Calculator unchanged -->
+          <div>
+            <strong>Python Calculator</strong>
+            <div class="meta small">Practice - Python</div>
+            <div class="muted">
+              Created a modular calculator supporting multiple arithmetic operations with input
+              validation and clean function structure.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PROJECTS (updated) -->
+      <section id="projects" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          Projects & Highlights
+        </h2>
+
+        <div class="grid projects" style="margin-top:8px">
+
+          <!-- Ashen Cipher -->
+          <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">
+            <h3 style="margin-bottom:6px">Ashen Cipher Tool</h3>
+            <div class="meta small">Python - Encryption - String Logic</div>
+            <p class="muted small">
+              Multi-step cipher system using Atbash, binary conversion, and permutation.
+              Includes simple GUI and clean data flow.
+            </p>
+          </div>
+
+          <!-- Toy Aircraft -->
+          <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">
+            <h3 style="margin-bottom:6px">Toy Military Aircraft Inventory</h3>
+            <div class="meta small">HTML - CSS - JS</div>
+            <p class="muted small">
+              Add, edit, delete, search, filter, and export toy aircraft records.
+              Runs in the browser using localStorage for data storage.
+            </p>
+          </div>
+
+          <!-- Calculator remains -->
+          <div class="card" style="background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);">
+            <h3 style="margin-bottom:6px">Python Calculator</h3>
+            <div class="meta small">Python - Functions</div>
+            <p class="muted small">
+              Modular design with input handling and arithmetic functions.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ARTWORK: Slime card integrated -->
+      <section id="artwork" class="card slime-card" aria-label="Artwork and character cards">
+        <div class="card-inner">
+          <div class="slime-canvas">
+            <div class="slime-label">Green Slime</div>
+
+            <div class="slime">
+              <div class="body"></div>
+              <div class="gloss"></div>
+
+              <div class="eye left"><div class="pupil"></div></div>
+              <div class="eye right"><div class="pupil"></div></div>
+
+              <div class="mouth"></div>
+
+              <div class="blush left"></div>
+              <div class="blush right"></div>
+            </div>
+          </div>
+
+          <div class="slime-info">
+            <div class="title">Green Slime</div>
+            <div class="subtitle">Common RPG Monster</div>
+
+            <div class="desc">
+              A soft and bouncy green slime. Usually found in beginner areas.
+              Easy to defeat, safe to practice on, and drops small amounts of gel.
+            </div>
+
+            <div class="slime-stats">
+              <div class="slime-stat">
+                <h4>Level</h4>
+                2
+              </div>
+
+              <div class="slime-stat">
+                <h4>HP</h4>
+                24 / 48
+                <div class="hpbar"><i></i></div>
+              </div>
+
+              <div class="slime-stat">
+                <h4>EXP</h4>
+                10
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REST OF RESUME CONTENT (coursework, skills, contact) -->
+      <section id="coursework" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2z"/></svg>
+          Relevant Coursework
+        </h2>
+        <ul class="clean">
+          <li>• Data Structures & Algorithms - arrays, lists, stacks, sorting basics</li>
+          <li>• Web Development Fundamentals - HTML, CSS, JavaScript basics</li>
+          <li>• Database Systems - SQL, basic schema, CRUD</li>
+          <li>• Systems Programming - basic C/C++ foundations</li>
+        </ul>
+      </section>
+
+      <section id="hard-skills" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M6 6h4v4H6zM2 18h4v4H2z"/></svg>
+          Technical Skills
+        </h2>
+        <div class="row" style="margin-top:8px">
+          <div style="width:45%">
+            <div class="small" style="margin-bottom:6px">Python</div>
+            <div class="progress"><i style="width:50%"></i></div>
+          </div>
+          <div style="width:45%">
+            <div class="small" style="margin-bottom:6px">JavaScript</div>
+            <div class="progress"><i style="width:50%"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="soft-skills" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 12c2.2 0 4-1.79 4-4s-1.8-4-4-4-4 1.79-4 4 1.8 4 4 4z"/></svg>
+          Soft Skills & Activities
+        </h2>
+        <ul class="clean">
+          <li>• Problem-solving - practice through school assignments and debugging sessions</li>
+          <li>• Teamwork - collaborated on group exercises and class labs</li>
+          <li>• Time management - balancing coursework with projects and practice</li>
+          <li>• Communication - presenting small projects and explaining design choices</li>
+        </ul>
+
+        <div style="margin-top:12px">
+          <div class="small"><strong>Extracurricular:</strong></div>
+          <div class="muted small">Participated in coding practice groups, helped classmates debug scripts and projects.</div>
+        </div>
+      </section>
+
+      <section id="certifications" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 2l3 6 6 .5-4.5 3.5L19 20l-7-4-7 4 1.5-7L2 8.5 8 8 12 2z"/></svg>
+          Certifications & Goals
+        </h2>
+        <p class="muted">Current: No formal industry certs yet. Plans: pursue entry-level certificates such as <strong>HTML/CSS & JavaScript</strong> badges, basic IT fundamentals, and introductory cloud certifications in the next 12-18 months.</p>
+      </section>
+
+      <section id="contact" class="card">
+        <h2 class="section-h2">
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M20 4H4v16h16V4zm0 4l-8 5-8-5"/></svg>
+          Contact
+        </h2>
+
+        <p class="muted">Prefer email for formal inquiries - I typically respond within 24-48 hours.</p>
+
+        <p class="muted"><strong>Email:</strong> <a class="link" href="mailto:alphardkent@gmail.com">alphardkent@gmail.com</a></p>
+        <p class="muted"><strong>Phone:</strong> <a class="link" href="tel:09691813760">0969 181 3760</a></p>
+
+        <p style="margin-top:12px" class="muted small">Send me a message:</p>
+        <form onsubmit="submitForm(event)">
+          <input type="text" id="name" placeholder="Your Name" required style="width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:white;margin-bottom:8px;">
+          <input type="email" id="email" placeholder="you@example.com" required style="width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:white;margin-bottom:8px;">
+          <textarea id="message" placeholder="Your message..." required style="width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:white;min-height:120px;margin-bottom:8px;"></textarea>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button type="submit" style="background:var(--accent);color:#001222;padding:10px 14px;border-radius:8px;border:none;font-weight:700;">Send</button>
+            <a class="link" href="#" style="margin-left:6px;font-size:13px">Download PDF (placeholder)</a>
+          </div>
+        </form>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Alphard Kent</div>
+      <div class="muted small">
+        Email: <a class="link" href="mailto:alphardkent@gmail.com">alphardkent@gmail.com</a> - Phone: <a class="link" href="tel:09691813760">0969 181 3760</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // show current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // avatar fallback helper
+    (function(){
+      const img = document.getElementById('avatarImg');
+      const avatar = document.getElementById('avatar');
+
+      function showFallback(){
+        if (avatar) avatar.classList.add('no-img');
+        console.error('Avatar image failed to load:', img && img.src);
+      }
+
+      function hideFallback(){
+        if (avatar) avatar.classList.remove('no-img');
+      }
+
+      if (img) {
+        img.addEventListener('error', showFallback);
+        img.addEventListener('load', hideFallback);
+
+        if (!img.complete || img.naturalWidth === 0) {
+          setTimeout(() => {
+            if (!img.complete || img.naturalWidth === 0) showFallback();
+          }, 300);
+        }
+      } else {
+        if (avatar) avatar.classList.add('no-img');
+      }
+    })();
+
+    // contact form mailto
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'Anonymous';
+      const email = document.getElementById('email').value.trim() || 'no-reply';
+      const msg = document.getElementById('message').value.trim() || '';
+      const subject = encodeURIComponent('Website message from ' + name);
+      const body = encodeURIComponent(msg + "\n\nFrom: " + name + " (" + email + ")");
+      window.location.href = `mailto:alphardkent@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
